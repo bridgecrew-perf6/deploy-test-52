@@ -19,4 +19,4 @@ jobs:
       #- run: npm ci
       #- run: npm run build
       # Deploy
-      - run: rsync -e "ssh -p 20022 -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . samolet500@77.222.56.111:/home/s/samolet500/maxmotus/public_html
+      - run: rsync -e "ssh -p 20022 -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . samolet500@77.222.56.111:/maxmotus/public_html
