@@ -8,6 +8,11 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: api
+
     steps:
       - uses: actions/checkout@v2
 
@@ -21,4 +26,4 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
         
       - name: Deploy with rsync
-        run: rsync -avz ./api samolet500@${{ secrets.SSH_HOST }}:/home/s/samolet500/maxmotus/public_html
+        run: rsync -avz . samolet500@${{ secrets.SSH_HOST }}:/home/s/samolet500/maxmotus/public_html
