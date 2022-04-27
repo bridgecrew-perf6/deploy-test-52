@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  deploy-api:
     runs-on: ubuntu-latest
     
     defaults:
@@ -27,3 +27,25 @@ jobs:
         
       - name: Deploy with rsync
         run: rsync -avz . samolet500@${{ secrets.SSH_HOST }}:/home/s/samolet500/maxmotus/public_html
+
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: frontend
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.KEY }} 
+          known_hosts: unnecessary
+      
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+        
+      - name: Deploy with rsync
+        run: rsync -avz . samolet500@${{ secrets.SSH_HOST }}:/home/s/samolet500/uberart_maxmotus_ru/public_html
