@@ -26,7 +26,7 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
         
       - name: Deploy with rsync
-        run: rsync -avz . samolet500@${{ secrets.SSH_HOST }}:/home/s/samolet500/maxmotus/public_html
+        run: rsync -avz . samolet500@${{ secrets.SSH_HOST }}:/home/s/samolet500/ycrm_api/public_html
 
   deploy-frontend:
     runs-on: ubuntu-latest
@@ -48,4 +48,4 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
         
       - name: Deploy with rsync
-        run: rsync -avz . samolet500@${{ secrets.SSH_HOST }}:/home/s/samolet500/uberart_maxmotus_ru/public_html
+        run: rsync -avz . samolet500@${{ secrets.SSH_HOST }}:/home/s/samolet500/ycrm_web/public_html
